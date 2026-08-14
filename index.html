@@ -36,13 +36,13 @@
         }
 
         .men-bg-card {
-            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.9)), url('man.jpg');
+            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.95)), url('man.jpg');
             background-size: cover;
             background-position: center;
         }
 
         .women-bg-card {
-            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.9)), url('weman.jpg');
+            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.95)), url('weman.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -124,7 +124,6 @@
                         <span class="hidden sm:inline">Reviews</span>
                     </button>
 
-                    <!-- Donate Section Button -->
                     <button onclick="openDonateModal()" class="bg-gradient-to-r from-pink-500 via-rose-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-black px-3 sm:px-4 py-2 rounded-2xl text-xs md:text-sm flex items-center gap-1.5 shadow-xl transition transform active:scale-95 border border-pink-300">
                         <span>💖</span>
                         <span>Donate</span>
@@ -146,31 +145,31 @@
                 <h1 class="text-3xl md:text-5xl font-black text-amber-400 mb-2 text-shadow flex items-center justify-center gap-3">
                     <span>👑</span> Hyper Store Legendary Collection
                 </h1>
-                <p class="text-xs md:text-base text-shadow opacity-90 font-bold">Browse our premium collections seamlessly ✨</p>
+                <p class="text-xs md:text-base text-shadow opacity-90 font-bold">100% Strictly Filtered Men & Women Collections ✨</p>
             </div>
         </div>
 
         <!-- 1. Gender Selection -->
         <div id="step-gender-selection" class="container mx-auto px-4 py-12">
             <h2 class="text-center text-white text-2xl font-black mb-8 text-shadow flex items-center justify-center gap-2">
-                👇 Select a Department to Get Started
+                👇 Select Department
             </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                <div onclick="selectGender('women')" class="category-card women-bg-card p-8 rounded-3xl shadow-2xl cursor-pointer text-center border-2 border-pink-400/50 hover:border-pink-400 group text-white">
-                    <div class="w-32 h-32 bg-pink-900/60 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-pink-400 shadow-inner group-hover:scale-105 transition">
+                <div onclick="selectGender('women')" class="category-card women-bg-card p-8 rounded-3xl shadow-2xl cursor-pointer text-center border-2 border-pink-400/50 hover:border-pink-400 group text-white relative overflow-hidden">
+                    <div class="w-32 h-32 bg-pink-950/70 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-pink-400 shadow-inner group-hover:scale-105 transition relative z-10">
                         <img src="https://emojigraph.org/media/apple/woman-blond-hair_1f471-200d-2640-fe0f.png" class="emoji-3d">
                     </div>
-                    <h3 class="text-2xl font-black mb-2 text-pink-300 text-shadow">Women's Department</h3>
-                    <p class="text-xs text-gray-200 font-bold text-shadow">Finest models, shoes, and luxury accessories ✨</p>
+                    <h3 class="text-2xl font-black mb-2 text-pink-300 text-shadow relative z-10">Women's Department</h3>
+                    <p class="text-xs text-gray-200 font-bold text-shadow relative z-10">Exclusive women dresses, pants, and heels ✨</p>
                 </div>
 
                 <div onclick="selectGender('men')" class="category-card men-bg-card p-8 rounded-3xl shadow-2xl cursor-pointer text-center border-2 border-indigo-400/50 hover:border-indigo-400 group text-white">
-                    <div class="w-32 h-32 bg-indigo-900/60 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-indigo-400 shadow-inner group-hover:scale-105 transition">
-                        <img src="https://emojigraph.org/media/apple/man-beard_1f9d4-200d-2642-fe0f.png" class="emoji-3d">
+                    <div class="w-32 h-32 bg-indigo-950/70 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-indigo-400 shadow-inner group-hover:scale-105 transition">
+                        <img src="https://emojigraph.org/media/apple/man-blond-hair_1f471-200d-2642-fe0f.png" class="emoji-3d">
                     </div>
                     <h3 class="text-2xl font-black mb-2 text-amber-400 text-shadow">Men's Department</h3>
-                    <p class="text-xs text-gray-200 font-bold text-shadow">Premium t-shirts, pants, shoes, and caps 🔥</p>
+                    <p class="text-xs text-gray-200 font-bold text-shadow">Exclusive men t-shirts, jeans pants, and sneakers 🔥</p>
                 </div>
             </div>
         </div>
@@ -183,7 +182,7 @@
                 </button>
                 <span class="text-base font-black text-gray-900">Choose Category:</span>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="categories-grid"></div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6" id="categories-grid"></div>
         </div>
 
         <!-- 3. Products Display -->
@@ -194,7 +193,7 @@
                 </button>
                 <h2 id="selected-category-title" class="text-lg md:text-xl font-black text-indigo-700 flex items-center gap-2"></h2>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="products-grid"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6" id="products-grid"></div>
         </div>
 
     </div>
@@ -242,14 +241,14 @@
         </div>
     </div>
 
-    <!-- Epic Cart Drawer with Pro Checkout & Payment Methods -->
+    <!-- Epic Cart Drawer -->
     <div id="cart-overlay" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300">
         <div id="cart-drawer" class="absolute top-0 right-0 w-full max-w-md h-full bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900 text-white shadow-2xl flex flex-col justify-between p-6 border-l border-indigo-500/30 transform translate-x-full transition-transform duration-300 overflow-y-auto">
             
             <div>
                 <div class="flex justify-between items-center mb-6 pb-4 border-b border-white/15">
                     <h3 class="text-xl font-black flex items-center gap-2 text-amber-400">
-                        <span>🛒</span> Your Epic Cart
+                        <span>🛒</span> Your Cart
                     </h3>
                     <button onclick="toggleCart()" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-xl font-bold transition">&times;</button>
                 </div>
@@ -289,13 +288,12 @@
                     </div>
                 </div>
 
-                <!-- Professional Payment Methods Section -->
+                <!-- Professional Payment Methods -->
                 <div class="border-t border-white/15 pt-4 space-y-3">
                     <h4 class="font-black text-xs uppercase tracking-wider text-indigo-300 mb-2 flex items-center gap-1.5">
                         <i class="fa-solid fa-credit-card"></i> Select Payment Method:
                     </h4>
                     
-                    <!-- Option 1: Credit Card -->
                     <div onclick="selectPaymentMethod('card')" id="pay-card-box" class="cursor-pointer border-2 border-indigo-500 bg-indigo-950/60 p-3 rounded-2xl transition shadow-lg">
                         <label class="flex items-center justify-between font-bold text-xs text-indigo-200 cursor-pointer pointer-events-none">
                             <span class="flex items-center gap-2">
@@ -313,7 +311,6 @@
                         </div>
                     </div>
 
-                    <!-- Option 2: PayPal -->
                     <div onclick="selectPaymentMethod('paypal')" id="pay-paypal-box" class="cursor-pointer border-2 border-blue-500/40 bg-blue-950/20 p-3 rounded-2xl transition shadow-lg">
                         <label class="flex items-center justify-between font-bold text-xs text-blue-200 cursor-pointer pointer-events-none">
                             <span class="flex items-center gap-2">
@@ -327,7 +324,6 @@
                         </div>
                     </div>
 
-                    <!-- Option 3: Cash on Delivery -->
                     <div onclick="selectPaymentMethod('cod')" id="pay-cod-box" class="cursor-pointer border-2 border-emerald-500/40 bg-emerald-950/20 p-3 rounded-2xl transition shadow-lg">
                         <label class="flex items-center justify-between font-bold text-xs text-emerald-200 cursor-pointer pointer-events-none">
                             <span class="flex items-center gap-2">
@@ -340,7 +336,6 @@
                 </div>
             </div>
 
-            <!-- Calculation and Professional Checkout Button -->
             <div class="border-t border-white/15 pt-4 mt-4">
                 <div class="space-y-1.5 mb-3 bg-white/5 p-3 rounded-2xl border border-white/10 text-xs font-bold">
                     <div class="flex justify-between text-gray-300">
@@ -368,8 +363,17 @@
     <div id="feedback-modal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4 backdrop-blur-md">
         <div class="bg-white rounded-3xl max-w-xl w-full p-6 relative shadow-2xl">
             <button onclick="closeFeedbackModal()" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-full w-9 h-9 flex items-center justify-center text-xl font-bold">&times;</button>
-            <h2 class="text-2xl font-black text-center mb-4">💬 Reviews</h2>
-            <div class="text-center text-sm font-bold text-gray-500 py-8">Review system active!</div>
+            <h2 class="text-2xl font-black text-center mb-4">💬 Customer Reviews</h2>
+            <div class="space-y-3 max-h-[60vh] overflow-y-auto pr-1">
+                <div class="bg-slate-50 p-4 rounded-2xl border">
+                    <div class="flex justify-between items-center mb-1"><span class="font-bold text-sm">Sarah L.</span><span class="text-amber-500 text-xs">⭐⭐⭐⭐⭐</span></div>
+                    <p class="text-xs text-gray-600">Amazing clothing quality and fast delivery! Loved the experience.</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-2xl border">
+                    <div class="flex justify-between items-center mb-1"><span class="font-bold text-sm">Karim M.</span><span class="text-amber-500 text-xs">⭐⭐⭐⭐⭐</span></div>
+                    <p class="text-xs text-gray-600">Very reliable store with top-notch products and smooth checkout.</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -418,161 +422,134 @@
             men: {
                 label: "Men's Department",
                 categories: [
-                    { id: 'tshirts', name: 'T-Shirts', icon: 'https://emojigraph.org/media/apple/t-shirt_1f455.png' },
-                    { id: 'pants', name: 'Pants', icon: 'https://emojigraph.org/media/apple/jeans_1f456.png' },
-                    { id: 'shoes', name: 'Shoes', icon: 'https://emojigraph.org/media/apple/running-shoe_1f45f.png' },
-                    { id: 'hats', name: 'Caps & Hats', icon: 'https://emojigraph.org/media/apple/billed-cap_1f9e2.png' }
+                    { id: 'tshirts', name: 'Men T-Shirts (5 Items)', icon: 'https://emojigraph.org/media/apple/t-shirt_1f455.png' },
+                    { id: 'pants', name: 'Men Pants (5 Items)', icon: 'https://emojigraph.org/media/apple/jeans_1f456.png' },
+                    { id: 'shoes', name: 'Men Shoes (5 Items)', icon: 'https://emojigraph.org/media/apple/running-shoe_1f45f.png' }
                 ],
                 products: {
                     tshirts: [
-                        { id: 'mt1', name: 'Luxury Black T-Shirt (Okaïdi)', price: 50, rating: 4.9, reviewsCount: 124, description: 'Premium quality black t-shirt made of 100% soft cotton for all-day comfort. Modern design and excellent value.', image: 'https://www.okaidi.dz/2872537-medium_default/t-shirt-basique-manches-courtes-noir-garcon.jpg' }
+                        { id: 'mt1', name: 'Men Luxury Black Tee', price: 45, rating: 4.9, reviewsCount: 110, description: 'Pure black men t-shirt worn by a male model.', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3Ja3dguhlmyn5NJwRRkyORTt6mgx0MkEUtdEdOSxr3g&s' },
+                        { id: 'mt2', name: 'Men Classic White Tee', price: 35, rating: 4.8, reviewsCount: 95, description: 'Clean basic white t-shirt styled for men.', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsF9mEONCHbqjMwV0o1fgvy3FCRZzYNxOn9044TMFsKw&s=10' },
+                        { id: 'mt3', name: 'Men Navy Blue Sport Tee', price: 40, rating: 4.7, reviewsCount: 80, description: 'Breathable athletic sports t-shirt for men.', image: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'mt4', name: 'Men Urban Grey Tee', price: 38, rating: 4.6, reviewsCount: 62, description: 'Modern grey casual t-shirt worn by a male model.', image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'mt5', name: 'Men Vintage Charcoal Tee', price: 42, rating: 4.9, reviewsCount: 75, description: 'Charcoal premium cotton t-shirt for men.', image: 'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=500&auto=format&fit=crop&q=60' }
                     ],
                     pants: [
-                        { id: 'mp1', name: 'Men\'s Black Denim Jeans', price: 40, rating: 4.7, reviewsCount: 89, description: 'Modern and durable denim jeans suitable for casual daily wear and occasions.', image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&auto=format&fit=crop&q=60' }
+                        { id: 'mp1', name: 'Men Classic Denim Jeans', price: 55, rating: 4.8, reviewsCount: 140, description: 'Classic blue denim jeans designed specifically for men.', image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'mp2', name: 'Men Urban Cargo Pants', price: 60, rating: 4.9, reviewsCount: 112, description: 'Multi-pocket tactical cargo trousers for men (Men Urban Cargo).', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTG_ypAeKMeXNfiFtQgNWjWDIlBndu9-hHXH6sEzDVrQ&s=10' },
+                        { id: 'mp3', name: 'Men Black Slim Fit Trousers', price: 50, rating: 4.7, reviewsCount: 85, description: 'Formal slim-fit black trousers for men (Men Black Slim Fit).', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTph5ligbxziR-t6VwXV9FgHr4niOVtojVmJkTXpp68bg&s=10' },
+                        { id: 'mp4', name: 'Men Grey Jogger Pants', price: 45, rating: 4.6, reviewsCount: 70, description: 'Comfortable fleece grey joggers for men (Men Grey Jogger).', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8WR1cBx_VMpw7A4EPZC9mhy-6au_7Exb3RjSI5igwNA&s=10' },
+                        { id: 'mp5', name: 'Men Khaki Chino Pants', price: 48, rating: 4.8, reviewsCount: 94, description: 'Classic khaki chino trousers for men (Men Khaki Chino).', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSCnneybyUX_Z-V0eYgzdLbKBWQFOaSFT1MFMw6aheZQ&s=10' }
                     ],
                     shoes: [
-                        { id: 'ms1', name: 'Hyper 1 Men\'s Sneakers', price: 65, rating: 4.8, reviewsCount: 156, description: 'Extremely comfortable sneakers with shock-absorbing soles.', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=60' }
-                    ],
-                    hats: [
-                        { id: 'mh1', name: 'Classic Men\'s Cap', price: 20, rating: 4.6, reviewsCount: 45, description: 'Lightweight and stylish sun cap.', image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=500&auto=format&fit=crop&q=60' }
+                        { id: 'ms1', name: 'Hyper 1 Men Running Sneakers', price: 75, rating: 4.9, reviewsCount: 180, description: 'High-performance athletic running sneakers for men (Hyper 1 Men).', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJQpYHtbfksVsVr-ptKOnZZkINnT8INNuNQh3DNXaxrA&s=10' },
+                        { id: 'ms2', name: 'Men Formal Leather Oxford Shoes', price: 95, rating: 4.9, reviewsCount: 90, description: 'Genuine leather formal oxford shoes for men.', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzHcD2QvPxnYMzYm46XT_2ykKVBvWi_pwnHPobmRlHHw&s=10' },
+                        { id: 'ms3', name: 'Men White Streetwear Sneakers', price: 70, rating: 4.7, reviewsCount: 115, description: 'Trendy white casual streetwear sneakers for men (Man White Streetwear).', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrSUpAsg4k-eEZyRHHcI7PS5hg6tivSos26gvXktQvzA&s=10' },
+                        { id: 'ms4', name: 'Men Sport Training Trainers', price: 65, rating: 4.8, reviewsCount: 88, description: 'Gym training athletic shoes for men.', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'ms5', name: 'Men Casual Loafers', price: 60, rating: 4.6, reviewsCount: 65, description: 'Comfortable slip-on casual loafers for men.', image: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=500&auto=format&fit=crop&q=60' }
                     ]
                 }
             },
             women: {
                 label: "Women's Department",
                 categories: [
-                    { id: 'tshirts', name: 'T-Shirts & Blouses', icon: 'https://emojigraph.org/media/apple/blouse_1f45a.png' },
-                    { id: 'pants', name: 'Women\'s Pants', icon: 'https://emojigraph.org/media/apple/jeans_1f456.png' },
-                    { id: 'shoes', name: 'Women\'s Shoes', icon: 'https://emojigraph.org/media/apple/high-heeled-shoe_1f460.png' }
+                    { id: 'dresses', name: 'Women Dresses (5 Items)', icon: 'https://emojigraph.org/media/apple/dress_1f457.png' },
+                    { id: 'pants', name: 'Women Pants (5 Items)', icon: 'https://emojigraph.org/media/apple/jeans_1f456.png' },
+                    { id: 'heels', name: 'Women Heels (5 Items)', icon: 'https://emojigraph.org/media/apple/high-heeled-shoe_1f460.png' }
                 ],
                 products: {
-                    tshirts: [
-                        { id: 'wt1', name: 'Elegant Cotton Women\'s T-Shirt', price: 35, rating: 4.8, reviewsCount: 92, description: 'Comfortable and lightweight women\'s t-shirt for all outfits.', image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&auto=format&fit=crop&q=60' }
+                    dresses: [
+                        { id: 'wd1', name: 'Women Elegant Evening Dress', price: 85, rating: 4.9, reviewsCount: 130, description: 'Luxurious evening gown designed for women.', image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'wd2', name: 'Women Summer Floral Dress', price: 55, rating: 4.8, reviewsCount: 92, description: 'Lightweight summer floral print casual dress for women.', image: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'wd3', name: 'Women Chic Midi Dress', price: 65, rating: 4.7, reviewsCount: 78, description: 'Stylish midi dress for women daily outings.', image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'wd4', name: 'Women Luxury Party Dress', price: 90, rating: 4.9, reviewsCount: 110, description: 'Sparkling designer party dress for women.', image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'wd5', name: 'Women Casual Bohemian Dress', price: 50, rating: 4.6, reviewsCount: 64, description: 'Comfortable bohemian style cotton dress for women.', image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&auto=format&fit=crop&q=60' }
                     ],
                     pants: [
-                        { id: 'wp1', name: 'Comfortable Women\'s Pants', price: 45, rating: 4.7, reviewsCount: 78, description: 'Modern cut pants made with high-end fabric.', image: 'https://images.unsplash.com/photo-1506629082925-2368c7f81152?w=500&auto=format&fit=crop&q=60' }
+                        { id: 'wp1', name: 'Women High-Waist Denim Jeans', price: 55, rating: 4.8, reviewsCount: 155, description: 'Classic high-waist comfortable denim jeans for women.', image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'wp2', name: 'Women Elegant Wide-Leg Trousers', price: 60, rating: 4.9, reviewsCount: 98, description: 'Sophisticated wide-leg trousers for women.', image: 'https://images.unsplash.com/photo-1550639525-c97d455acf70?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'wp3', name: 'Women Casual Lounge Joggers', price: 42, rating: 4.7, reviewsCount: 72, description: 'Cozy and soft lounge sweatpants for women.', image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'wp4', name: 'Women Stretch Leggings', price: 35, rating: 4.8, reviewsCount: 130, description: 'High-stretch activewear leggings for women.', image: 'https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'wp5', name: 'Women Tailored Office Pants', price: 58, rating: 4.6, reviewsCount: 84, description: 'Professional tailored trousers for women.', image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500&auto=format&fit=crop&q=60' }
                     ],
-                    shoes: [
-                        { id: 'ws1', name: 'Elegant Women\'s Shoes', price: 55, rating: 4.9, reviewsCount: 134, description: 'Comfortable and luxurious shoes for walking and occasions.', image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&auto=format&fit=crop&q=60' }
+                    heels: [
+                        { id: 'wh1', name: 'Women Luxury Red Stilettos', price: 85, rating: 4.9, reviewsCount: 165, description: 'Striking red stiletto high heels for women.', image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'wh2', name: 'Women Classic Nude Pumps', price: 75, rating: 4.8, reviewsCount: 120, description: 'Versatile nude high heels for women.', image: 'https://images.unsplash.com/photo-1575537302964-96cd47c06b1b?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'wh3', name: 'Women Evening Crystal Sandals', price: 90, rating: 4.9, reviewsCount: 95, description: 'Dazzling crystal-embellished evening sandals for women.', image: 'https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'wh4', name: 'Women Chic Block Heels', price: 65, rating: 4.7, reviewsCount: 88, description: 'Comfortable and trendy block heels for women.', image: 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=500&auto=format&fit=crop&q=60' },
+                        { id: 'wh5', name: 'Women Velvet Party Pumps', price: 80, rating: 4.8, reviewsCount: 76, description: 'Soft velvet textured party pumps for women.', image: 'https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?w=500&auto=format&fit=crop&q=60' }
                     ]
                 }
             }
         };
 
-        let currentGender = null;
-        let currentCategory = null;
+        let currentGender = 'men';
+        let currentCategory = '';
         let cart = [];
-        let toastTimer = null;
-
-        const shippingRates = {
-            local: 5.00,
-            arab: 15.00,
-            global: 30.00
-        };
-
-        function showSmoothToast(msg) {
-            const toast = document.getElementById('smooth-toast');
-            document.getElementById('toast-message').innerText = msg;
-            toast.classList.add('show');
-            clearTimeout(toastTimer);
-            toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
-        }
+        let currentModalProduct = null;
+        let currentModalQty = 1;
+        let selectedPayment = 'Credit Card';
 
         function selectGender(gender) {
             currentGender = gender;
+            document.getElementById('current-gender-label').innerText = database[gender].label;
             document.getElementById('step-gender-selection').classList.add('hidden');
             document.getElementById('step-category-selection').classList.remove('hidden');
-            document.getElementById('current-gender-label').innerText = database[gender].label;
+            renderCategories();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
+        function renderCategories() {
             const grid = document.getElementById('categories-grid');
-            grid.innerHTML = database[gender].categories.map(cat => `
-                <div onclick="selectCategory('${cat.id}')" class="category-card glass-panel p-6 rounded-3xl shadow-xl cursor-pointer text-center border hover:border-indigo-600 group flex flex-col items-center justify-center">
-                    <div class="w-20 h-20 bg-indigo-50 rounded-2xl flex items-center justify-center mb-3 shadow-inner border border-indigo-100 p-2">
-                        <img src="${cat.icon}" class="w-full h-full object-contain filter drop-shadow">
+            grid.innerHTML = '';
+            database[currentGender].categories.forEach(cat => {
+                grid.innerHTML += `
+                    <div onclick="selectCategory('${cat.id}')" class="category-card glass-panel p-6 rounded-3xl shadow-xl cursor-pointer text-center group border border-indigo-100 flex flex-col items-center justify-center">
+                        <div class="w-24 h-24 bg-indigo-50 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition shadow-inner">
+                            <img src="${cat.icon}" class="emoji-3d">
+                        </div>
+                        <h3 class="text-base font-black text-gray-900 group-hover:text-indigo-600 transition">${cat.name}</h3>
                     </div>
-                    <h4 class="font-black text-gray-900 text-base">${cat.name}</h4>
-                </div>
-            `).join('');
+                `;
+            });
         }
 
         function selectCategory(catId) {
             currentCategory = catId;
             const categoryObj = database[currentGender].categories.find(c => c.id === catId);
-            const productsList = database[currentGender].products[catId] || [];
-
+            document.getElementById('selected-category-title').innerText = categoryObj.name;
             document.getElementById('step-category-selection').classList.add('hidden');
             document.getElementById('step-products-display').classList.remove('hidden');
-            document.getElementById('selected-category-title').innerHTML = `${categoryObj.name} (${database[currentGender].label})`;
+            renderProducts();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-            const productsGrid = document.getElementById('products-grid');
-
-            if(productsList.length === 0) {
-                productsGrid.innerHTML = `<p class="col-span-full text-center text-white py-8 font-bold">No products available in this category yet.</p>`;
-                return;
-            }
-
-            productsGrid.innerHTML = productsList.map(item => `
-                <div class="product-card bg-white rounded-3xl p-4 shadow-xl border flex flex-col justify-between">
-                    <div onclick="openProductModal('${item.id}')" class="w-full h-44 bg-gray-50 rounded-2xl overflow-hidden mb-3 cursor-pointer flex items-center justify-center p-2 border">
-                        <img src="${item.image}" class="max-h-full max-w-full object-contain mix-blend-multiply">
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-gray-900 text-sm mb-1 line-clamp-1">${item.name}</h3>
-                        <div class="flex items-center gap-1 mb-3 text-xs font-bold text-amber-500">
-                            <i class="fa-solid fa-star"></i>
-                            <span>${item.rating}</span>
-                            <span class="text-gray-400 font-normal">(${item.reviewsCount})</span>
-                        </div>
-                        
-                        <div class="bg-indigo-50/50 p-3 rounded-xl mb-3 border border-indigo-100/60 shadow-inner">
-                            <div class="flex items-center justify-between mb-2 pb-2 border-b border-indigo-100">
-                                <span class="text-[11px] font-bold text-gray-500">Quantity:</span>
-                                <div class="flex items-center gap-2 bg-white rounded-lg border shadow-sm p-1">
-                                    <button onclick="changeCardQty('${item.id}', -1, ${item.price})" class="w-6 h-6 rounded bg-gray-50 hover:bg-gray-200 text-gray-700 font-bold flex items-center justify-center transition">-</button>
-                                    <span id="qty-${item.id}" class="text-xs font-black text-indigo-700 w-4 text-center">1</span>
-                                    <button onclick="changeCardQty('${item.id}', 1, ${item.price})" class="w-6 h-6 rounded bg-gray-50 hover:bg-gray-200 text-gray-700 font-bold flex items-center justify-center transition">+</button>
-                                </div>
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+            const products = database[currentGender].products[currentCategory];
+            products.forEach(prod => {
+                grid.innerHTML += `
+                    <div class="product-card bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 flex flex-col justify-between p-4">
+                        <div>
+                            <div onclick="openProductModal('${prod.id}')" class="bg-gray-50 rounded-2xl h-44 flex items-center justify-center mb-3 cursor-pointer overflow-hidden p-2">
+                                <img src="${prod.image}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition">
                             </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-[11px] font-bold text-gray-500">Total Price:</span>
-                                <p id="price-${item.id}" class="text-indigo-600 font-black text-lg">$${item.price}</p>
+                            <h4 onclick="openProductModal('${prod.id}')" class="font-bold text-sm text-gray-900 mb-1 cursor-pointer hover:text-indigo-600 line-clamp-1">${prod.name}</h4>
+                            <div class="flex items-center gap-1 text-xs text-amber-500 font-bold mb-3">
+                                <span>⭐ ${prod.rating}</span>
+                                <span class="text-gray-400 font-normal">(${prod.reviewsCount})</span>
                             </div>
                         </div>
-
+                        <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                            <span class="text-lg font-black text-indigo-600">$${prod.price}</span>
+                            <button onclick="openProductModal('${prod.id}')" class="bg-indigo-600 hover:bg-indigo-700 text-white w-9 h-9 rounded-xl flex items-center justify-center shadow transition active:scale-95">
+                                <i class="fa-solid fa-plus text-xs"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="space-y-2 mt-auto">
-                        <button onclick="openProductModal('${item.id}')" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 transition shadow-sm">
-                            <i class="fa-solid fa-eye"></i> Details
-                        </button>
-                        <button onclick="addCardToCart('${item.id}', '${item.name}', ${item.price})" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-md transition active:scale-95">
-                            <i class="fa-solid fa-cart-plus"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function changeCardQty(id, delta, basePrice) {
-            const qtyElement = document.getElementById(`qty-${id}`);
-            const priceElement = document.getElementById(`price-${id}`);
-            let currentQty = parseInt(qtyElement.innerText);
-            
-            currentQty += delta;
-            if (currentQty < 1) currentQty = 1;
-            
-            qtyElement.innerText = currentQty;
-            priceElement.innerText = `$${(currentQty * basePrice).toFixed(2)}`;
-        }
-
-        function addCardToCart(id, name, basePrice) {
-            const qty = parseInt(document.getElementById(`qty-${id}`).innerText);
-            addToCart(name, basePrice, qty);
-        }
-
-        function resetToHome() {
-            document.getElementById('step-products-display').classList.add('hidden');
-            document.getElementById('step-category-selection').classList.add('hidden');
-            document.getElementById('step-gender-selection').classList.remove('hidden');
+                `;
+            });
         }
 
         function backToCategories() {
@@ -580,119 +557,106 @@
             document.getElementById('step-category-selection').classList.remove('hidden');
         }
 
-        let currentModalProductBasePrice = 0;
-        function openProductModal(id) {
-            let product = null;
-            Object.keys(database[currentGender].products).forEach(cat => {
-                const found = database[currentGender].products[cat].find(p => p.id === id);
-                if(found) product = found;
-            });
-            if(!product) return;
+        function resetToHome() {
+            document.getElementById('step-products-display').classList.add('hidden');
+            document.getElementById('step-category-selection').classList.add('hidden');
+            document.getElementById('step-gender-selection').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-            currentModalProductBasePrice = product.price;
+        function openProductModal(prodId) {
+            const product = database[currentGender].products[currentCategory].find(p => p.id === prodId);
+            currentModalProduct = product;
+            currentModalQty = 1;
 
             document.getElementById('modal-img').src = product.image;
             document.getElementById('modal-title').innerText = product.name;
+            document.getElementById('modal-rating').innerHTML = `<span>⭐ ${product.rating}</span> <span class="text-gray-400 font-normal">(${product.reviewsCount} reviews)</span>`;
             document.getElementById('modal-description').innerText = product.description;
-            document.getElementById('modal-rating').innerHTML = `
-                <i class="fa-solid fa-star"></i>
-                <span class="text-gray-900 font-bold">${product.rating}</span>
-                <span class="text-gray-500 font-normal">(${product.reviewsCount} reviews)</span>
-            `;
-
-            document.getElementById('modal-qty').innerText = "1";
+            document.getElementById('modal-qty').innerText = currentModalQty;
             document.getElementById('modal-price').innerText = `$${product.price}`;
 
-            document.getElementById('modal-qty-minus').onclick = () => changeModalQty(-1, product.price);
-            document.getElementById('modal-qty-plus').onclick = () => changeModalQty(1, product.price);
+            document.getElementById('modal-qty-minus').onclick = () => {
+                if(currentModalQty > 1) {
+                    currentModalQty--;
+                    document.getElementById('modal-qty').innerText = currentModalQty;
+                    document.getElementById('modal-price').innerText = `$${product.price * currentModalQty}`;
+                }
+            };
+            document.getElementById('modal-qty-plus').onclick = () => {
+                currentModalQty++;
+                document.getElementById('modal-qty').innerText = currentModalQty;
+                document.getElementById('modal-price').innerText = `$${product.price * currentModalQty}`;
+            };
 
-            document.getElementById('modal-add-btn').onclick = function() {
-                const qty = parseInt(document.getElementById('modal-qty').innerText);
-                addToCart(product.name, product.price, qty);
+            document.getElementById('modal-add-btn').onclick = () => {
+                addToCart(product, currentModalQty);
                 closeProductModal();
             };
 
             document.getElementById('product-modal').classList.remove('hidden');
         }
 
-        function changeModalQty(delta, basePrice) {
-            const qtyElement = document.getElementById('modal-qty');
-            const priceElement = document.getElementById('modal-price');
-            let currentQty = parseInt(qtyElement.innerText);
-            
-            currentQty += delta;
-            if (currentQty < 1) currentQty = 1;
-            
-            qtyElement.innerText = currentQty;
-            priceElement.innerText = `$${(currentQty * basePrice).toFixed(2)}`;
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
         }
 
-        function closeProductModal() { document.getElementById('product-modal').classList.add('hidden'); }
-
-        function addToCart(name, price, qtyToAdd = 1) {
-            const existing = cart.find(item => item.name === name);
-            if(existing) { 
-                existing.qty += qtyToAdd; 
-            } else { 
-                cart.push({ name, price, qty: qtyToAdd }); 
+        function addToCart(product, qty) {
+            const existing = cart.find(item => item.id === product.id);
+            if(existing) {
+                existing.qty += qty;
+            } else {
+                cart.push({ ...product, qty });
             }
             updateCartUI();
-            showSmoothToast(`Added ${qtyToAdd} item(s) to cart successfully`);
+            showToast(`Added ${qty}x ${product.name} to cart`);
+        }
+
+        function removeFromCart(prodId) {
+            cart = cart.filter(item => item.id !== prodId);
+            updateCartUI();
         }
 
         function updateCartUI() {
-            document.getElementById('cart-count').innerText = cart.reduce((acc, item) => acc + item.qty, 0);
-            
-            let subtotal = 0;
-            const container = document.getElementById('cart-items');
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-count').innerText = totalCount;
+
+            const itemsContainer = document.getElementById('cart-items');
+            itemsContainer.innerHTML = '';
 
             if(cart.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-8 text-gray-400 font-semibold text-xs">
-                        <img src="https://emojigraph.org/media/apple/shopping-cart_1f6d2.png" class="w-14 h-14 mx-auto mb-2 opacity-50 object-contain">
-                        Your cart is currently empty!
-                    </div>
-                `;
+                itemsContainer.innerHTML = `<p class="text-xs text-gray-400 text-center py-6 font-bold">Your cart is empty.</p>`;
             } else {
-                container.innerHTML = cart.map((item, index) => {
-                    subtotal += item.price * item.qty;
-                    return `
-                        <div class="flex justify-between items-center bg-white/5 border border-white/10 p-2.5 rounded-2xl">
-                            <div>
-                                <h5 class="font-bold text-xs text-white mb-0.5">${item.name}</h5>
-                                <p class="text-[11px] text-amber-400 font-bold">$${item.price} × ${item.qty} <span class="text-gray-400 text-[10px]">($${(item.price*item.qty).toFixed(2)})</span></p>
+                cart.forEach(item => {
+                    itemsContainer.innerHTML += `
+                        <div class="bg-white/5 border border-white/10 p-3 rounded-2xl flex items-center justify-between gap-3">
+                            <div class="flex items-center gap-3">
+                                <img src="${item.image}" class="w-12 h-12 object-contain bg-white/10 rounded-xl p-1">
+                                <div>
+                                    <h5 class="text-xs font-bold line-clamp-1">${item.name}</h5>
+                                    <span class="text-[11px] text-amber-400 font-bold">$${item.price} × ${item.qty}</span>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-1.5">
-                                <button onclick="changeCartQty(${index}, 1)" class="w-6 h-6 bg-white/10 hover:bg-white/20 rounded-lg font-bold text-xs flex items-center justify-center">+</button>
-                                <span class="text-xs font-black w-4 text-center">${item.qty}</span>
-                                <button onclick="changeCartQty(${index}, -1)" class="w-6 h-6 bg-white/10 hover:bg-white/20 rounded-lg font-bold text-xs flex items-center justify-center">-</button>
-                            </div>
+                            <button onclick="removeFromCart('${item.id}')" class="text-red-400 hover:text-red-300 p-2 text-xs"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     `;
-                }).join('');
+                });
             }
 
-            const selectedCountryVal = document.getElementById('shipping-country').value;
-            const shippingCost = shippingRates[selectedCountryVal] || 5.00;
-            const grandTotal = subtotal + (cart.length > 0 ? shippingCost : 0);
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const countryVal = document.getElementById('shipping-country').value;
+            let shippingFee = 5;
+            if(countryVal === 'arab') shippingFee = 15;
+            if(countryVal === 'global') shippingFee = 30;
 
             document.getElementById('cart-subtotal').innerText = `$${subtotal.toFixed(2)}`;
-            document.getElementById('shipping-cost-display').innerText = `$${shippingCost.toFixed(2)}`;
-            document.getElementById('cart-total').innerText = `$${grandTotal.toFixed(2)}`;
-        }
-
-        function changeCartQty(index, delta) {
-            cart[index].qty += delta;
-            if(cart[index].qty <= 0) {
-                cart.splice(index, 1);
-            }
-            updateCartUI();
+            document.getElementById('shipping-cost-display').innerText = `$${shippingFee.toFixed(2)}`;
+            document.getElementById('cart-total').innerText = `$${(subtotal + (cart.length > 0 ? shippingFee : 0)).toFixed(2)}`;
         }
 
         function toggleCart() {
             const overlay = document.getElementById('cart-overlay');
             const drawer = document.getElementById('cart-drawer');
-            
             if(overlay.classList.contains('hidden')) {
                 overlay.classList.remove('hidden');
                 setTimeout(() => {
@@ -702,135 +666,86 @@
             } else {
                 overlay.classList.add('opacity-0');
                 drawer.classList.add('translate-x-full');
-                setTimeout(() => {
-                    overlay.classList.add('hidden');
-                }, 300);
+                setTimeout(() => overlay.classList.add('hidden'), 300);
             }
         }
 
-        function selectPaymentMethod(type) {
-            const cardBox = document.getElementById('pay-card-box');
-            const paypalBox = document.getElementById('pay-paypal-box');
-            const codBox = document.getElementById('pay-cod-box');
+        function selectPaymentMethod(method) {
+            selectedPayment = method === 'card' ? 'Credit Card' : method === 'paypal' ? 'PayPal' : 'Cash on Delivery';
+            
+            document.getElementById('pay-card-box').className = "cursor-pointer border-2 " + (method === 'card' ? "border-indigo-500 bg-indigo-950/60" : "border-indigo-500/30 bg-indigo-950/10") + " p-3 rounded-2xl transition shadow-lg";
+            document.getElementById('pay-paypal-box').className = "cursor-pointer border-2 " + (method === 'paypal' ? "border-blue-500 bg-blue-950/60" : "border-blue-500/30 bg-blue-950/10") + " p-3 rounded-2xl transition shadow-lg";
+            document.getElementById('pay-cod-box').className = "cursor-pointer border-2 " + (method === 'cod' ? "border-emerald-500 bg-emerald-950/60" : "border-emerald-500/30 bg-emerald-950/10") + " p-3 rounded-2xl transition shadow-lg";
 
-            const cardInputs = document.getElementById('card-details-inputs');
-            const paypalInputs = document.getElementById('paypal-email-input');
+            document.getElementById('card-details-inputs').classList.toggle('hidden', method !== 'card');
+            document.getElementById('paypal-email-input').classList.toggle('hidden', method !== 'paypal');
 
-            // Reset all styles
-            cardBox.className = "cursor-pointer border-2 border-indigo-500/40 bg-indigo-950/20 p-3 rounded-2xl transition shadow-lg";
-            paypalBox.className = "cursor-pointer border-2 border-blue-500/40 bg-blue-950/20 p-3 rounded-2xl transition shadow-lg";
-            codBox.className = "cursor-pointer border-2 border-emerald-500/40 bg-emerald-950/20 p-3 rounded-2xl transition shadow-lg";
-
-            cardBox.querySelector('input').checked = false;
-            paypalBox.querySelector('input').checked = false;
-            codBox.querySelector('input').checked = false;
-
-            cardInputs.classList.add('hidden');
-            paypalInputs.classList.add('hidden');
-
-            if(type === 'card') {
-                cardBox.className = "cursor-pointer border-2 border-indigo-500 bg-indigo-950/60 p-3 rounded-2xl transition shadow-lg";
-                cardBox.querySelector('input').checked = true;
-                cardInputs.classList.remove('hidden');
-            } else if(type === 'paypal') {
-                paypalBox.className = "cursor-pointer border-2 border-blue-500 bg-blue-950/60 p-3 rounded-2xl transition shadow-lg";
-                paypalBox.querySelector('input').checked = true;
-                paypalInputs.classList.remove('hidden');
-            } else if(type === 'cod') {
-                codBox.className = "cursor-pointer border-2 border-emerald-500 bg-emerald-950/60 p-3 rounded-2xl transition shadow-lg";
-                codBox.querySelector('input').checked = true;
-            }
+            document.querySelectorAll('input[name="paymentOption"]').forEach(radio => {
+                radio.checked = (radio.value === selectedPayment);
+            });
         }
 
         function checkoutToWhatsApp() {
-            if(cart.length === 0) return alert('Your cart is empty!');
-            
-            const countrySelect = document.getElementById('shipping-country');
-            const countryText = countrySelect.options[countrySelect.selectedIndex].text;
+            if(cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
             const city = document.getElementById('ship-city').value.trim();
             const street = document.getElementById('ship-street').value.trim();
             const apt = document.getElementById('ship-apt').value.trim();
 
             if(!city || !street) {
-                alert('Please enter your city and street address for shipping!');
+                alert('Please enter your shipping City and Street address!');
                 return;
             }
 
-            const selectedPayment = document.querySelector('input[name="paymentOption"]:checked').value;
+            const countryText = document.getElementById('shipping-country').selectedOptions[0].text;
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const countryVal = document.getElementById('shipping-country').value;
+            let shippingFee = countryVal === 'arab' ? 15 : countryVal === 'global' ? 30 : 5;
+            let total = subtotal + shippingFee;
 
-            let paymentExtraInfo = "";
-            if(selectedPayment === 'Credit Card') {
-                const ccNum = document.getElementById('cc-number').value.trim();
-                if(!ccNum) {
-                    alert('Please enter your credit card number!');
-                    document.getElementById('cc-number').focus();
-                    return;
-                }
-                paymentExtraInfo = `(Card ending in •••• ${ccNum.slice(-4)})`;
-            } else if(selectedPayment === 'PayPal') {
-                const ppEmail = document.getElementById('paypal-email').value.trim();
-                if(!ppEmail) {
-                    alert('Please enter your PayPal email address!');
-                    document.getElementById('paypal-email').focus();
-                    return;
-                }
-                paymentExtraInfo = `(PayPal Account: ${ppEmail})`;
-            }
+            let message = `👑 *NEW HYPER STORE ORDER* 👑\n\n`;
+            cart.forEach((item, index) => {
+                message += `${index + 1}. *${item.name}* (Qty: ${item.qty}) - $${item.price * item.qty}\n`;
+            });
+            message += `\n📦 *Shipping Info:*\n`;
+            message += `• Region: ${countryText}\n`;
+            message += `• City: ${city}\n`;
+            message += `• Street: ${street} (Apt: ${apt || 'N/A'})\n`;
+            message += `\n💳 *Payment Method:* ${selectedPayment}\n`;
+            message += `💰 *Subtotal:* $${subtotal.toFixed(2)}\n`;
+            message += `🚚 *Shipping:* $${shippingFee.toFixed(2)}\n`;
+            message += `⭐ *Total Amount:* $${total.toFixed(2)}`;
 
-            let message = `🛒 *NEW ORDER - Hyper Store* 👑\n\n` + 
-                        `*Products:*\n` + 
-                        cart.map(i => `• ${i.name} (Qty: ${i.qty}) -> $${i.price * i.qty}`).join('\n') + 
-                        `\n\n*Shipping Address:*\n` +
-                        `- Country: ${countryText}\n` +
-                        `- City: ${city}\n` +
-                        `- Street: ${street}\n` +
-                        `- Apt/House: ${apt || 'N/A'}\n\n` +
-                        `*Payment Details:*\n` +
-                        `- Method: ${selectedPayment} ${paymentExtraInfo}\n` +
-                        `- Subtotal: ${document.getElementById('cart-subtotal').innerText}\n` +
-                        `- Shipping: ${document.getElementById('shipping-cost-display').innerText}\n` +
-                        `- *Total Amount:* ${document.getElementById('cart-total').innerText}\n\n` +
-                        `_Status: Order placed successfully and ready for processing!_`;
-
-            window.open(`https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            const encodedURL = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
+            window.open(encodedURL, '_blank');
         }
 
         function openFeedbackModal() { document.getElementById('feedback-modal').classList.remove('hidden'); }
         function closeFeedbackModal() { document.getElementById('feedback-modal').classList.add('hidden'); }
-
-        // Donate Modal Functions
         function openDonateModal() { document.getElementById('donate-modal').classList.remove('hidden'); }
         function closeDonateModal() { document.getElementById('donate-modal').classList.add('hidden'); }
+
         function setDonateAmount(amount) {
             document.getElementById('donate-amount').value = amount;
         }
 
         function sendDonationWhatsApp() {
-            const amount = document.getElementById('donate-amount').value;
-            const txId = document.getElementById('donate-tx-id').value.trim();
-
-            if(!amount || amount <= 0) {
-                alert('Please enter a valid support amount!');
-                return;
-            }
-
-            if(!txId) {
-                alert('Please enter your Donation Transaction ID!');
-                document.getElementById('donate-tx-id').focus();
-                return;
-            }
-
-            let message = `💖 *NEW STORE DONATION & SUPPORT* 👑\n\n` +
-                        `- *Support Amount:* $${amount}\n` +
-                        `- *PayPal Account:* zinobandaho@gmail.com\n` +
-                        `- 🆔 *Transaction ID:* ${txId}\n\n` +
-                        `_Status: Thank you for supporting Hyper Store development!_`;
-
-            window.open(`https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`, '_blank');
-            closeDonateModal();
+            const amount = document.getElementById('donate-amount').value || '10';
+            const txId = document.getElementById('donate-tx-id').value.trim() || 'N/A';
+            const message = `💖 *HYPER STORE DONATION* 💖\n\n• Support Amount: $${amount}\n• Transaction ID: ${txId}\n\nThank you for supporting Hyper Store!`;
+            const encodedURL = `https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`;
+            window.open(encodedURL, '_blank');
         }
 
-        updateCartUI();
+        function showToast(text) {
+            const toast = document.getElementById('smooth-toast');
+            document.getElementById('toast-message').innerText = text;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
     </script>
 </body>
 </html>
