@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,101 +8,133 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Twemoji Auto-Parser لإظهار الإيموجيات بشكل 3D فخم وموحد على كل الأجهزة -->
-    <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap');
         
         html { scroll-behavior: smooth; }
-        body { font-family: 'Tajawal', sans-serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
         
-        /* جعل جميع الإيموجيات تظهر بشكل واقعي فخم ومجسم 3D */
-        img.emoji {
-            height: 1em;
-            width: 1em;
-            margin: 0 .05em 0 .1em;
-            vertical-align: -0.1em;
-            display: inline-block;
+        .emoji-3d {
+            width: 75px;
+            height: 75px;
+            object-fit: contain;
+            filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.4));
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .category-emoji img.emoji {
-            width: 70px !important;
-            height: 70px !important;
-            filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.3));
-            transition: transform 0.3s ease;
-        }
-
-        .category-card:hover .category-emoji img.emoji {
-            transform: scale(1.2) rotate(5deg);
+        .category-card:hover .emoji-3d {
+            transform: scale(1.2) rotate(6deg);
         }
 
         .site-bg {
-            background-image: url('hyper store.jpg');
+            background-image: url('hyper.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
         }
 
+        .men-bg-card {
+            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.9)), url('man.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .women-bg-card {
+            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.9)), url('weman.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
         .product-card {
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.4);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.45);
         }
 
         .category-card {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .category-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.3);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 30px -5px rgba(99, 102, 241, 0.4);
         }
 
         .glass-panel {
-            background: rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
         }
 
-        .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+        .text-shadow { text-shadow: 2px 2px 6px rgba(0,0,0,0.85); }
+
+        #smooth-toast {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        }
+        #smooth-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #cart-drawer {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="site-bg min-h-screen text-gray-800 relative">
 
-    <div class="bg-slate-950/60 min-h-screen pb-16">
+    <!-- Smooth Toast Notification -->
+    <div id="smooth-toast" class="fixed bottom-6 left-6 z-50 bg-slate-900/95 text-white px-5 py-3 rounded-2xl shadow-2xl border border-emerald-500/40 flex items-center gap-3 backdrop-blur-md">
+        <div class="w-7 h-7 bg-emerald-500/20 border border-emerald-500 rounded-full flex items-center justify-center text-emerald-400 text-xs shrink-0">
+            <i class="fa-solid fa-check font-black"></i>
+        </div>
+        <span id="toast-message" class="text-xs font-bold tracking-wide">Added successfully</span>
+    </div>
+
+    <div class="bg-slate-950/65 min-h-screen pb-16">
 
         <!-- Header -->
         <header class="bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-40 border-b border-indigo-100">
             <div class="container mx-auto px-4 py-3 flex justify-between items-center">
                 
-                <!-- اللوجو وزر العودة للرئيسية -->
                 <div class="flex items-center gap-4">
                     <h1 onclick="resetToHome()" class="text-xl md:text-2xl font-black text-indigo-600 flex items-center gap-2 cursor-pointer tracking-wide">
-                        <span class="text-3xl">🛍️</span>
+                        <img src="https://emojigraph.org/media/apple/shopping-bags_1f6cd-fe0f.png" class="w-8 h-8 object-contain">
                         Hyper Store
                     </h1>
                 </div>
 
-                <!-- أقصى اليسار: زر التعليقات + السلة -->
-                <div class="flex items-center gap-3">
-                    
-                    <!-- 🌟 زر التعليقات والآراء -->
-                    <button onclick="openFeedbackModal()" class="bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-950 font-black px-4 py-2 rounded-2xl text-xs md:text-sm flex items-center gap-2 shadow-xl transition transform active:scale-95 border border-amber-300">
-                        <span class="text-lg">⭐</span>
-                        <span>التعليقات والآراء</span>
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <button onclick="openFeedbackModal()" class="bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-950 font-black px-3 sm:px-4 py-2 rounded-2xl text-xs md:text-sm flex items-center gap-1.5 shadow-xl transition transform active:scale-95 border border-amber-300">
+                        <span>⭐</span>
+                        <span class="hidden sm:inline">Reviews</span>
                     </button>
 
-                    <!-- زر السلة -->
-                    <button onclick="toggleCart()" class="relative bg-indigo-600 text-white px-4 py-2 rounded-2xl flex items-center gap-2 hover:bg-indigo-700 transition text-sm shadow-lg font-bold">
-                        <span class="text-lg">🛒</span>
-                        <span class="hidden sm:inline">السلة</span>
-                        <span id="cart-count" class="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-black">0</span>
+                    <!-- Donate Section Button -->
+                    <button onclick="openDonateModal()" class="bg-gradient-to-r from-pink-500 via-rose-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white font-black px-3 sm:px-4 py-2 rounded-2xl text-xs md:text-sm flex items-center gap-1.5 shadow-xl transition transform active:scale-95 border border-pink-300">
+                        <span>💖</span>
+                        <span>Donate</span>
                     </button>
 
+                    <button onclick="toggleCart()" class="relative bg-gradient-to-r from-indigo-600 to-violet-600 text-white px-3 sm:px-4 py-2 rounded-2xl flex items-center gap-1.5 hover:from-indigo-700 hover:to-violet-700 transition text-xs sm:text-sm shadow-xl font-bold border border-indigo-400/30">
+                        <span>🛒</span>
+                        <span class="hidden sm:inline">Cart</span>
+                        <span id="cart-count" class="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-black shadow">0</span>
+                    </button>
                 </div>
 
             </div>
@@ -112,165 +144,268 @@
         <div class="container mx-auto px-4 mt-6">
             <div class="relative bg-slate-900/85 backdrop-blur-md text-white py-8 px-6 rounded-3xl overflow-hidden shadow-2xl border border-white/20 text-center">
                 <h1 class="text-3xl md:text-5xl font-black text-amber-400 mb-2 text-shadow flex items-center justify-center gap-3">
-                    <span>👑</span> متجر Hyper Store الأسطوري
+                    <span>👑</span> Hyper Store Legendary Collection
                 </h1>
-                <p class="text-xs md:text-base text-shadow opacity-90 font-bold">تصفح تشكيلاتنا الفاخرة بكل سهولة وسلاسة ✨</p>
+                <p class="text-xs md:text-base text-shadow opacity-90 font-bold">Browse our premium collections seamlessly ✨</p>
             </div>
         </div>
 
-        <!-- 🚀 1. الخطوة الأولى: اختيار ملابس رجال أو نساء -->
+        <!-- 1. Gender Selection -->
         <div id="step-gender-selection" class="container mx-auto px-4 py-12">
             <h2 class="text-center text-white text-2xl font-black mb-8 text-shadow flex items-center justify-center gap-2">
-                👇 اختر قسم الملابس للبدء
+                👇 Select a Department to Get Started
             </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                
-                <!-- خيار الرجال -->
-                <div onclick="selectGender('men')" class="category-card glass-panel p-8 rounded-3xl shadow-2xl cursor-pointer text-center border-2 border-indigo-200 hover:border-indigo-600 group">
-                    <div class="category-emoji w-32 h-32 bg-indigo-100/80 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-indigo-300 shadow-inner group-hover:bg-indigo-200 transition">
-                        <span class="text-6xl">🧔‍♂️</span>
+                <div onclick="selectGender('women')" class="category-card women-bg-card p-8 rounded-3xl shadow-2xl cursor-pointer text-center border-2 border-pink-400/50 hover:border-pink-400 group text-white">
+                    <div class="w-32 h-32 bg-pink-900/60 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-pink-400 shadow-inner group-hover:scale-105 transition">
+                        <img src="https://emojigraph.org/media/apple/woman-blond-hair_1f471-200d-2640-fe0f.png" class="emoji-3d">
                     </div>
-                    <h3 class="text-2xl font-black text-gray-900 mb-2">قسم الرجال</h3>
-                    <p class="text-xs text-gray-600 font-bold">تيشيرتات، سراويل، أحذية وقبعات فاخرة جداً 🔥</p>
+                    <h3 class="text-2xl font-black mb-2 text-pink-300 text-shadow">Women's Department</h3>
+                    <p class="text-xs text-gray-200 font-bold text-shadow">Finest models, shoes, and luxury accessories ✨</p>
                 </div>
 
-                <!-- خيار النساء -->
-                <div onclick="selectGender('women')" class="category-card glass-panel p-8 rounded-3xl shadow-2xl cursor-pointer text-center border-2 border-pink-200 hover:border-pink-500 group">
-                    <div class="category-emoji w-32 h-32 bg-pink-100/80 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-pink-300 shadow-inner group-hover:bg-pink-200 transition">
-                        <span class="text-6xl">👩‍🦱</span>
+                <div onclick="selectGender('men')" class="category-card men-bg-card p-8 rounded-3xl shadow-2xl cursor-pointer text-center border-2 border-indigo-400/50 hover:border-indigo-400 group text-white">
+                    <div class="w-32 h-32 bg-indigo-900/60 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-indigo-400 shadow-inner group-hover:scale-105 transition">
+                        <img src="https://emojigraph.org/media/apple/man-beard_1f9d4-200d-2642-fe0f.png" class="emoji-3d">
                     </div>
-                    <h3 class="text-2xl font-black text-gray-900 mb-2">قسم النساء</h3>
-                    <p class="text-xs text-gray-600 font-bold">أرقى الموديلات والأحذية والإكسسوارات الفاخرة ✨</p>
+                    <h3 class="text-2xl font-black mb-2 text-amber-400 text-shadow">Men's Department</h3>
+                    <p class="text-xs text-gray-200 font-bold text-shadow">Premium t-shirts, pants, shoes, and caps 🔥</p>
                 </div>
-
             </div>
         </div>
 
-        <!-- 🚀 2. الخطوة الثانية: اختيار الفئة (تيشيرتات/سراويل/أحذية...) -->
+        <!-- 2. Category Selection -->
         <div id="step-category-selection" class="container mx-auto px-4 py-8 hidden">
             <div class="flex items-center justify-between mb-8 glass-panel p-4 rounded-2xl shadow-lg">
                 <button onclick="resetToHome()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2 transition shadow">
-                    <i class="fa-solid fa-arrow-right"></i> تغيير القسم (<span id="current-gender-label">الرجال</span>)
+                    <i class="fa-solid fa-arrow-left"></i> Dept (<span id="current-gender-label">Men</span>)
                 </button>
-                <span class="text-base font-black text-gray-900">اختر الفئة المطلوبة:</span>
+                <span class="text-base font-black text-gray-900">Choose Category:</span>
             </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="categories-grid">
-                <!-- يتم توليد الفئات هنا -->
-            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="categories-grid"></div>
         </div>
 
-        <!-- 🚀 3. الخطوة الثالثة: عرض السلع الخاصة بالفئة المختارة فقط -->
+        <!-- 3. Products Display -->
         <div id="step-products-display" class="container mx-auto px-4 py-8 hidden">
             <div class="flex items-center justify-between mb-8 glass-panel p-4 rounded-2xl shadow-lg">
                 <button onclick="backToCategories()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2 transition shadow">
-                    <i class="fa-solid fa-arrow-right"></i> الرجوع إلى الفئات
+                    <i class="fa-solid fa-arrow-left"></i> Categories
                 </button>
                 <h2 id="selected-category-title" class="text-lg md:text-xl font-black text-indigo-700 flex items-center gap-2"></h2>
             </div>
-
-            <!-- شبكة عرض المنتجات -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="products-grid">
-                <!-- السلع تظهر هنا فقط -->
-            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="products-grid"></div>
         </div>
 
     </div>
 
-    <!-- 🖼️ نافذة تكبير وتفاصيل المنتجات -->
+    <!-- Product Details Modal -->
     <div id="product-modal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4 backdrop-blur-md">
-        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl relative p-6">
-            <button onclick="closeProductModal()" class="absolute top-4 left-4 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-full w-9 h-9 flex items-center justify-center text-xl font-bold z-10">&times;</button>
+        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[95vh] overflow-y-auto shadow-2xl relative p-6">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-full w-9 h-9 flex items-center justify-center text-xl font-bold z-10">&times;</button>
             
             <div class="flex flex-col gap-4">
-                <div class="bg-gray-50 rounded-2xl p-4 flex items-center justify-center h-64 border shadow-inner">
+                <div class="bg-gray-50 rounded-2xl p-4 flex items-center justify-center h-56 border shadow-inner">
                     <img id="modal-img" src="" class="max-h-full max-w-full object-contain">
                 </div>
-
                 <div>
                     <h2 id="modal-title" class="text-xl font-bold text-gray-900 mb-1"></h2>
-                    <p id="modal-price" class="text-2xl font-black text-indigo-600 mb-3"></p>
+                    <div id="modal-rating" class="flex items-center gap-1.5 mb-3 text-xs font-bold text-amber-500"></div>
                     
-                    <div class="bg-indigo-50/80 p-4 rounded-2xl border border-indigo-100 mb-4">
+                    <div class="bg-indigo-50/80 p-3 rounded-2xl border border-indigo-100 mb-4">
                         <h4 class="font-bold text-xs text-indigo-900 mb-1 flex items-center gap-1">
-                            <i class="fa-solid fa-circle-info"></i> وصف السلعة:
+                            <i class="fa-solid fa-circle-info"></i> Description:
                         </h4>
                         <p id="modal-description" class="text-xs text-gray-700 leading-relaxed font-semibold"></p>
                     </div>
 
-                    <button id="modal-add-btn" class="w-full bg-indigo-600 text-white font-black py-3.5 rounded-2xl hover:bg-indigo-700 transition flex items-center justify-center gap-2 shadow-xl text-sm">
-                        <i class="fa-solid fa-cart-plus"></i> إضافة للسلة الآن
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 💬 نافذة التعليقات -->
-    <div id="feedback-modal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4 backdrop-blur-md">
-        <div class="bg-white rounded-3xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative p-6">
-            <button onclick="closeFeedbackModal()" class="absolute top-4 left-4 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-full w-9 h-9 flex items-center justify-center text-xl font-bold z-10">&times;</button>
-
-            <div class="text-center mb-6">
-                <h2 class="text-2xl font-black text-gray-900 flex items-center justify-center gap-2">
-                    <span>💬</span> التعليقات وآراء الزبائن
-                </h2>
-                <p class="text-xs text-gray-500 font-bold mt-1">سجل دخول بواسطة Google وابدِ رأيك بكل شفافية</p>
-            </div>
-
-            <div id="auth-container" class="bg-indigo-50 border border-indigo-100 p-4 rounded-2xl mb-6 text-center">
-                <div id="user-logged-out">
-                    <p class="text-xs text-gray-700 font-bold mb-3">تسجيل دخول سريع لكتابة تعليق:</p>
-                    <button onclick="simulateGoogleLogin()" class="bg-white hover:bg-gray-50 text-gray-800 border shadow font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-2 mx-auto">
-                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4">
-                        تسجيل الدخول باستخدام Google
-                    </button>
-                </div>
-
-                <div id="user-logged-in" class="hidden flex items-center justify-between bg-white p-3 rounded-xl border shadow-sm">
-                    <div class="flex items-center gap-3">
-                        <img id="user-avatar" src="" class="w-10 h-10 rounded-full border">
+                    <div class="bg-slate-50 p-4 rounded-2xl mb-4 border border-slate-200 flex items-center justify-between shadow-sm">
+                        <div>
+                            <span class="text-[11px] font-bold text-gray-500 block mb-1">Select Qty:</span>
+                            <div class="flex items-center gap-3 bg-white rounded-xl border shadow-sm p-1">
+                                <button id="modal-qty-minus" class="w-8 h-8 rounded-lg bg-gray-50 hover:bg-gray-200 text-gray-700 font-bold text-lg flex items-center justify-center transition">-</button>
+                                <span id="modal-qty" class="text-sm font-black text-indigo-700 w-6 text-center">1</span>
+                                <button id="modal-qty-plus" class="w-8 h-8 rounded-lg bg-gray-50 hover:bg-gray-200 text-gray-700 font-bold text-lg flex items-center justify-center transition">+</button>
+                            </div>
+                        </div>
                         <div class="text-right">
-                            <h4 id="user-name" class="font-bold text-xs text-gray-900"></h4>
-                            <p id="user-email" class="text-[10px] text-gray-500"></p>
+                            <span class="text-[11px] font-bold text-gray-500 block mb-1">Total Price:</span>
+                            <p id="modal-price" class="text-2xl font-black text-indigo-600">$0</p>
                         </div>
                     </div>
-                    <button onclick="googleLogout()" class="text-xs text-red-500 font-bold bg-red-50 px-3 py-1.5 rounded-lg">خروج</button>
-                </div>
-            </div>
 
-            <div id="review-form-box" class="bg-gray-50 p-4 rounded-2xl border mb-6 opacity-50 pointer-events-none">
-                <textarea id="review-text" rows="3" placeholder="اكتب تعليقك هنا عن الخامات والجودة والتوصيل..." class="w-full border p-3 rounded-xl text-xs mb-3 focus:outline-indigo-500"></textarea>
-                <button onclick="postGlobalReview()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-2.5 rounded-xl text-xs shadow">نشر التعليق الآن</button>
-            </div>
-
-            <div id="global-reviews-list" class="space-y-3">
-                <div class="bg-gray-50 p-3.5 rounded-2xl border flex gap-3">
-                    <img src="https://ui-avatars.com/api/?name=محمد+علي&background=0D8ABC&color=fff" class="w-9 h-9 rounded-full">
-                    <div>
-                        <h4 class="font-bold text-xs text-gray-900">محمد علي <span class="text-yellow-500">⭐⭐⭐⭐⭐</span></h4>
-                        <p class="text-xs text-gray-600 mt-0.5">التيشيرت الأسود Okaïdi خامة ممتازة وسعر أسطوري!</p>
-                    </div>
+                    <button id="modal-add-btn" class="w-full bg-indigo-600 text-white font-black py-3.5 rounded-2xl hover:bg-indigo-700 transition flex items-center justify-center gap-2 shadow-xl text-sm active:scale-95">
+                        <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- السلة -->
-    <div id="cart-modal" class="fixed inset-0 bg-black/60 hidden z-50 flex justify-end">
-        <div class="bg-white w-full max-w-md h-full p-6 overflow-y-auto flex flex-col justify-between">
+    <!-- Epic Cart Drawer with Pro Checkout & Payment Methods -->
+    <div id="cart-overlay" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300">
+        <div id="cart-drawer" class="absolute top-0 right-0 w-full max-w-md h-full bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900 text-white shadow-2xl flex flex-col justify-between p-6 border-l border-indigo-500/30 transform translate-x-full transition-transform duration-300 overflow-y-auto">
+            
             <div>
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-xl font-black">سلة الشراء 🛒</h3>
-                    <button onclick="toggleCart()" class="text-gray-500 text-3xl">&times;</button>
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-white/15">
+                    <h3 class="text-xl font-black flex items-center gap-2 text-amber-400">
+                        <span>🛒</span> Your Epic Cart
+                    </h3>
+                    <button onclick="toggleCart()" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-xl font-bold transition">&times;</button>
                 </div>
-                <div id="cart-items" class="space-y-4"><p class="text-gray-500 text-center font-bold">السلة فارغة حالياً</p></div>
+                
+                <div id="cart-items" class="space-y-3 mb-6 max-h-[30vh] overflow-y-auto pr-1"></div>
+
+                <!-- Shipping Address Form -->
+                <div class="border-t border-white/15 pt-4 mb-4 space-y-3">
+                    <h4 class="font-black text-xs uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
+                        <i class="fa-solid fa-location-dot"></i> Shipping & Address Info:
+                    </h4>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-[10px] text-gray-300 font-bold block mb-1">Country / Region:</label>
+                            <select id="shipping-country" onchange="updateCartUI()" class="w-full bg-slate-950/80 border border-white/20 text-white text-xs rounded-xl p-2.5 font-bold focus:border-indigo-400 outline-none">
+                                <option value="local">Local Delivery ($5)</option>
+                                <option value="arab">Middle East / North Africa ($15)</option>
+                                <option value="global">International Global ($30)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-gray-300 font-bold block mb-1">City:</label>
+                            <input type="text" id="ship-city" placeholder="e.g. Algiers / Oran" class="w-full bg-slate-950/80 border border-white/20 text-white text-xs rounded-xl p-2.5 font-bold focus:border-indigo-400 outline-none">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-[10px] text-gray-300 font-bold block mb-1">Street / Neighborhood:</label>
+                            <input type="text" id="ship-street" placeholder="Street name" class="w-full bg-slate-950/80 border border-white/20 text-white text-xs rounded-xl p-2.5 font-bold focus:border-indigo-400 outline-none">
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-gray-300 font-bold block mb-1">Apartment / House #:</label>
+                            <input type="text" id="ship-apt" placeholder="Apt or House No." class="w-full bg-slate-950/80 border border-white/20 text-white text-xs rounded-xl p-2.5 font-bold focus:border-indigo-400 outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional Payment Methods Section -->
+                <div class="border-t border-white/15 pt-4 space-y-3">
+                    <h4 class="font-black text-xs uppercase tracking-wider text-indigo-300 mb-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-credit-card"></i> Select Payment Method:
+                    </h4>
+                    
+                    <!-- Option 1: Credit Card -->
+                    <div onclick="selectPaymentMethod('card')" id="pay-card-box" class="cursor-pointer border-2 border-indigo-500 bg-indigo-950/60 p-3 rounded-2xl transition shadow-lg">
+                        <label class="flex items-center justify-between font-bold text-xs text-indigo-200 cursor-pointer pointer-events-none">
+                            <span class="flex items-center gap-2">
+                                <input type="radio" name="paymentOption" value="Credit Card" checked class="accent-indigo-500"> 
+                                <i class="fa-solid fa-credit-card text-indigo-400 text-base"></i> Credit Card (Visa / Mastercard)
+                            </span>
+                            <span class="flex gap-1 text-sm"><i class="fa-brands fa-cc-visa text-blue-400"></i><i class="fa-brands fa-cc-mastercard text-amber-500"></i></span>
+                        </label>
+                        <div id="card-details-inputs" class="mt-3 pt-3 border-t border-indigo-500/30 space-y-2">
+                            <input type="text" id="cc-number" placeholder="Card Number (4532 •••• •••• 8921)" class="w-full bg-slate-950 border border-indigo-400/40 text-white text-xs rounded-xl p-2 font-mono outline-none">
+                            <div class="grid grid-cols-2 gap-2">
+                                <input type="text" id="cc-exp" placeholder="MM / YY" class="bg-slate-950 border border-indigo-400/40 text-white text-xs rounded-xl p-2 font-mono outline-none">
+                                <input type="password" id="cc-cvv" placeholder="CVV" maxlength="4" class="bg-slate-950 border border-indigo-400/40 text-white text-xs rounded-xl p-2 font-mono outline-none">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Option 2: PayPal -->
+                    <div onclick="selectPaymentMethod('paypal')" id="pay-paypal-box" class="cursor-pointer border-2 border-blue-500/40 bg-blue-950/20 p-3 rounded-2xl transition shadow-lg">
+                        <label class="flex items-center justify-between font-bold text-xs text-blue-200 cursor-pointer pointer-events-none">
+                            <span class="flex items-center gap-2">
+                                <input type="radio" name="paymentOption" value="PayPal" class="accent-blue-500"> 
+                                <i class="fa-brands fa-paypal text-blue-400 text-base"></i> PayPal Express Checkout
+                            </span>
+                            <i class="fa-brands fa-paypal text-blue-400 text-lg"></i>
+                        </label>
+                        <div id="paypal-email-input" class="mt-2 pt-2 border-t border-blue-500/30 hidden">
+                            <input type="email" id="paypal-email" placeholder="Your PayPal Email address" class="w-full bg-slate-950 border border-blue-400/40 text-white text-xs rounded-xl p-2 outline-none">
+                        </div>
+                    </div>
+
+                    <!-- Option 3: Cash on Delivery -->
+                    <div onclick="selectPaymentMethod('cod')" id="pay-cod-box" class="cursor-pointer border-2 border-emerald-500/40 bg-emerald-950/20 p-3 rounded-2xl transition shadow-lg">
+                        <label class="flex items-center justify-between font-bold text-xs text-emerald-200 cursor-pointer pointer-events-none">
+                            <span class="flex items-center gap-2">
+                                <input type="radio" name="paymentOption" value="Cash on Delivery" class="accent-emerald-500"> 
+                                <i class="fa-solid fa-money-bill-wave text-emerald-400 text-base"></i> Cash on Delivery (COD)
+                            </span>
+                            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-black">Pay upon receipt</span>
+                        </label>
+                    </div>
+                </div>
             </div>
-            <div class="border-t pt-4">
-                <div class="flex justify-between font-black text-lg mb-4"><span>المجموع:</span><span id="cart-total" class="text-indigo-600">$0.00</span></div>
-                <button onclick="checkout()" class="w-full bg-green-600 text-white font-black py-3.5 rounded-2xl hover:bg-green-700 transition flex items-center justify-center gap-2 shadow-lg">
-                    <i class="fa-brands fa-whatsapp text-xl"></i> إرسال الطلب عبر الواتساب
+
+            <!-- Calculation and Professional Checkout Button -->
+            <div class="border-t border-white/15 pt-4 mt-4">
+                <div class="space-y-1.5 mb-3 bg-white/5 p-3 rounded-2xl border border-white/10 text-xs font-bold">
+                    <div class="flex justify-between text-gray-300">
+                        <span>Items Subtotal:</span>
+                        <span id="cart-subtotal">$0.00</span>
+                    </div>
+                    <div class="flex justify-between text-gray-300">
+                        <span>Shipping Cost:</span>
+                        <span id="shipping-cost-display" class="text-emerald-400">$5.00</span>
+                    </div>
+                    <div class="flex justify-between font-black text-base pt-2 border-t border-white/10">
+                        <span class="text-white">Total Amount:</span>
+                        <span id="cart-total" class="text-amber-400 text-xl">$0.00</span>
+                    </div>
+                </div>
+                <button onclick="checkoutToWhatsApp()" class="w-full bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-black py-3.5 rounded-2xl transition flex items-center justify-center gap-2 shadow-xl text-xs uppercase tracking-wide border border-emerald-400/40 active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Complete Purchase & Send Order
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedback-modal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 relative shadow-2xl">
+            <button onclick="closeFeedbackModal()" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-full w-9 h-9 flex items-center justify-center text-xl font-bold">&times;</button>
+            <h2 class="text-2xl font-black text-center mb-4">💬 Reviews</h2>
+            <div class="text-center text-sm font-bold text-gray-500 py-8">Review system active!</div>
+        </div>
+    </div>
+
+    <!-- Donate Modal -->
+    <div id="donate-modal" class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="bg-slate-900 border border-pink-500/40 text-white rounded-3xl max-w-md w-full p-6 relative shadow-2xl">
+            <button onclick="closeDonateModal()" class="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white rounded-full w-9 h-9 flex items-center justify-center text-xl font-bold">&times;</button>
+            <div class="text-center mb-4">
+                <span class="text-4xl">💖</span>
+                <h2 class="text-2xl font-black text-pink-400 mt-2">Support & Donate</h2>
+                <p class="text-xs text-gray-300 font-bold mt-1">Help us develop and improve Hyper Store services!</p>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="text-xs text-gray-300 font-bold block mb-1">Select or Enter Support Amount ($):</label>
+                    <div class="grid grid-cols-3 gap-2 mb-2">
+                        <button onclick="setDonateAmount(5)" class="bg-slate-800 hover:bg-pink-600/40 border border-pink-500/30 rounded-xl py-2 font-black text-sm transition">$5</button>
+                        <button onclick="setDonateAmount(10)" class="bg-slate-800 hover:bg-pink-600/40 border border-pink-500/30 rounded-xl py-2 font-black text-sm transition">$10</button>
+                        <button onclick="setDonateAmount(25)" class="bg-slate-800 hover:bg-pink-600/40 border border-pink-500/30 rounded-xl py-2 font-black text-sm transition">$25</button>
+                    </div>
+                    <input type="number" id="donate-amount" placeholder="Custom amount" value="10" class="w-full bg-slate-950 border border-pink-500/40 text-white text-xs rounded-xl p-3 font-bold focus:border-pink-400 outline-none text-center text-lg">
+                </div>
+
+                <div class="bg-slate-950/80 p-3 rounded-2xl border border-white/10 text-xs">
+                    <span class="text-gray-400 block mb-1 text-center">Transfer donation via PayPal:</span>
+                    <div class="font-mono text-amber-300 font-black text-center select-all">zinobandaho@gmail.com</div>
+                </div>
+
+                <div>
+                    <label class="text-[11px] font-black text-emerald-300 block mb-1">Enter Donation Transaction ID:</label>
+                    <input type="text" id="donate-tx-id" placeholder="e.g. DONATE-TXN-4921" class="w-full bg-slate-950 border border-emerald-500/60 text-white text-xs rounded-xl p-2.5 font-mono font-bold focus:border-emerald-400 outline-none">
+                </div>
+
+                <button onclick="sendDonationWhatsApp()" class="w-full bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-black py-3.5 rounded-2xl transition flex items-center justify-center gap-2 shadow-xl text-xs uppercase tracking-wide border border-pink-400/40 active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Send Contribution & Notify
                 </button>
             </div>
         </div>
@@ -279,47 +414,46 @@
     <script>
         const myWhatsAppNumber = "213698326314";
 
-        // قاعدة البيانات مع إيموجيات 3D أسطورية
         const database = {
             men: {
-                label: "قسم الرجال",
+                label: "Men's Department",
                 categories: [
-                    { id: 'tshirts', name: 'التيشيرتات', icon: '👕' },
-                    { id: 'pants', name: 'السراويل', icon: '👖' },
-                    { id: 'shoes', name: 'الأحذية', icon: '👟' },
-                    { id: 'hats', name: 'القبعات', icon: '🧢' }
+                    { id: 'tshirts', name: 'T-Shirts', icon: 'https://emojigraph.org/media/apple/t-shirt_1f455.png' },
+                    { id: 'pants', name: 'Pants', icon: 'https://emojigraph.org/media/apple/jeans_1f456.png' },
+                    { id: 'shoes', name: 'Shoes', icon: 'https://emojigraph.org/media/apple/running-shoe_1f45f.png' },
+                    { id: 'hats', name: 'Caps & Hats', icon: 'https://emojigraph.org/media/apple/billed-cap_1f9e2.png' }
                 ],
                 products: {
                     tshirts: [
-                        { id: 'mt1', name: 'تيشيرت أسود فاخر (Okaïdi)', price: 50, description: 'تيشيرت أسود فاخر بجودة ممتازة، مصنوع من قطن ناعم 100% يوفر لك الراحة التامة طوال اليوم. تصميم عصري وبسعر ممتاز جدًا.', image: 'https://www.okaidi.dz/2872537-medium_default/t-shirt-basique-manches-courtes-noir-garcon.jpg' }
+                        { id: 'mt1', name: 'Luxury Black T-Shirt (Okaïdi)', price: 50, rating: 4.9, reviewsCount: 124, description: 'Premium quality black t-shirt made of 100% soft cotton for all-day comfort. Modern design and excellent value.', image: 'https://www.okaidi.dz/2872537-medium_default/t-shirt-basique-manches-courtes-noir-garcon.jpg' }
                     ],
                     pants: [
-                        { id: 'mp1', name: 'سروال جينز رجالي أسود', price: 40, description: 'سروال جينز عصري وقوي التحمل للمناسبات واليوميات.', image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&auto=format&fit=crop&q=60' }
+                        { id: 'mp1', name: 'Men\'s Black Denim Jeans', price: 40, rating: 4.7, reviewsCount: 89, description: 'Modern and durable denim jeans suitable for casual daily wear and occasions.', image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&auto=format&fit=crop&q=60' }
                     ],
                     shoes: [
-                        { id: 'ms1', name: 'حذاء رياضي رجالي Hyper 1', price: 65, description: 'حذاء رياضي مريح جداً وبطبقة ممتصة للصدمات.', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=60' }
+                        { id: 'ms1', name: 'Hyper 1 Men\'s Sneakers', price: 65, rating: 4.8, reviewsCount: 156, description: 'Extremely comfortable sneakers with shock-absorbing soles.', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=60' }
                     ],
                     hats: [
-                        { id: 'mh1', name: 'قبعة رجالية كلاسيكية', price: 20, description: 'قبعة شمسية ممتازة خفيفة الوزن.', image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=500&auto=format&fit=crop&q=60' }
+                        { id: 'mh1', name: 'Classic Men\'s Cap', price: 20, rating: 4.6, reviewsCount: 45, description: 'Lightweight and stylish sun cap.', image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=500&auto=format&fit=crop&q=60' }
                     ]
                 }
             },
             women: {
-                label: "قسم النساء",
+                label: "Women's Department",
                 categories: [
-                    { id: 'tshirts', name: 'التيشيرتات والبلوزات', icon: '👚' },
-                    { id: 'pants', name: 'السراويل النسائية', icon: '👖' },
-                    { id: 'shoes', name: 'الأحذية النسائية', icon: '👠' }
+                    { id: 'tshirts', name: 'T-Shirts & Blouses', icon: 'https://emojigraph.org/media/apple/blouse_1f45a.png' },
+                    { id: 'pants', name: 'Women\'s Pants', icon: 'https://emojigraph.org/media/apple/jeans_1f456.png' },
+                    { id: 'shoes', name: 'Women\'s Shoes', icon: 'https://emojigraph.org/media/apple/high-heeled-shoe_1f460.png' }
                 ],
                 products: {
                     tshirts: [
-                        { id: 'wt1', name: 'تيشيرت نسائي قطني أنيق', price: 35, description: 'تيشيرت نسائي مريح وخفيف لجميع الإطلالات.', image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&auto=format&fit=crop&q=60' }
+                        { id: 'wt1', name: 'Elegant Cotton Women\'s T-Shirt', price: 35, rating: 4.8, reviewsCount: 92, description: 'Comfortable and lightweight women\'s t-shirt for all outfits.', image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&auto=format&fit=crop&q=60' }
                     ],
                     pants: [
-                        { id: 'wp1', name: 'سروال نسائي مريح', price: 45, description: 'سروال بقصة عصرية وخامة راقية.', image: 'https://images.unsplash.com/photo-1506629082925-2368c7f81152?w=500&auto=format&fit=crop&q=60' }
+                        { id: 'wp1', name: 'Comfortable Women\'s Pants', price: 45, rating: 4.7, reviewsCount: 78, description: 'Modern cut pants made with high-end fabric.', image: 'https://images.unsplash.com/photo-1506629082925-2368c7f81152?w=500&auto=format&fit=crop&q=60' }
                     ],
                     shoes: [
-                        { id: 'ws1', name: 'حذاء نسائي أنيق', price: 55, description: 'حذاء مريح وفاخر للمشي الخفيف والمناسبات.', image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&auto=format&fit=crop&q=60' }
+                        { id: 'ws1', name: 'Elegant Women\'s Shoes', price: 55, rating: 4.9, reviewsCount: 134, description: 'Comfortable and luxurious shoes for walking and occasions.', image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&auto=format&fit=crop&q=60' }
                     ]
                 }
             }
@@ -328,35 +462,39 @@
         let currentGender = null;
         let currentCategory = null;
         let cart = [];
-        let currentUser = null;
+        let toastTimer = null;
 
-        // دالة تشغيل تحويل الإيموجيات لصور مجسمة 3D
-        function parseEmojis() {
-            twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
+        const shippingRates = {
+            local: 5.00,
+            arab: 15.00,
+            global: 30.00
+        };
+
+        function showSmoothToast(msg) {
+            const toast = document.getElementById('smooth-toast');
+            document.getElementById('toast-message').innerText = msg;
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // 1. اختيار الجنس (رجال أم نساء)
         function selectGender(gender) {
             currentGender = gender;
             document.getElementById('step-gender-selection').classList.add('hidden');
             document.getElementById('step-category-selection').classList.remove('hidden');
             document.getElementById('current-gender-label').innerText = database[gender].label;
 
-            // بناء الفئات
             const grid = document.getElementById('categories-grid');
             grid.innerHTML = database[gender].categories.map(cat => `
                 <div onclick="selectCategory('${cat.id}')" class="category-card glass-panel p-6 rounded-3xl shadow-xl cursor-pointer text-center border hover:border-indigo-600 group flex flex-col items-center justify-center">
-                    <div class="category-emoji w-20 h-20 bg-indigo-50 rounded-2xl flex items-center justify-center mb-3 shadow-inner border border-indigo-100">
-                        <span class="text-4xl">${cat.icon}</span>
+                    <div class="w-20 h-20 bg-indigo-50 rounded-2xl flex items-center justify-center mb-3 shadow-inner border border-indigo-100 p-2">
+                        <img src="${cat.icon}" class="w-full h-full object-contain filter drop-shadow">
                     </div>
                     <h4 class="font-black text-gray-900 text-base">${cat.name}</h4>
                 </div>
             `).join('');
-
-            parseEmojis();
         }
 
-        // 2. اختيار الفئة وعرض السلع الخاصة بها فقط
         function selectCategory(catId) {
             currentCategory = catId;
             const categoryObj = database[currentGender].categories.find(c => c.id === catId);
@@ -364,36 +502,71 @@
 
             document.getElementById('step-category-selection').classList.add('hidden');
             document.getElementById('step-products-display').classList.remove('hidden');
-            document.getElementById('selected-category-title').innerHTML = `قسم ${categoryObj.name} (${database[currentGender].label})`;
+            document.getElementById('selected-category-title').innerHTML = `${categoryObj.name} (${database[currentGender].label})`;
 
             const productsGrid = document.getElementById('products-grid');
 
             if(productsList.length === 0) {
-                productsGrid.innerHTML = `<p class="col-span-full text-center text-white py-8 font-bold">لا توجد سلع متوفرة حالياً في هذه الفئة.</p>`;
+                productsGrid.innerHTML = `<p class="col-span-full text-center text-white py-8 font-bold">No products available in this category yet.</p>`;
                 return;
             }
 
             productsGrid.innerHTML = productsList.map(item => `
                 <div class="product-card bg-white rounded-3xl p-4 shadow-xl border flex flex-col justify-between">
-                    <div onclick="openProductModal('${item.id}')" class="w-full h-48 bg-gray-50 rounded-2xl overflow-hidden mb-3 cursor-pointer flex items-center justify-center p-2 border">
-                        <img src="${item.image}" class="max-h-full max-w-full object-contain">
+                    <div onclick="openProductModal('${item.id}')" class="w-full h-44 bg-gray-50 rounded-2xl overflow-hidden mb-3 cursor-pointer flex items-center justify-center p-2 border">
+                        <img src="${item.image}" class="max-h-full max-w-full object-contain mix-blend-multiply">
                     </div>
                     <div>
-                        <h3 class="font-bold text-gray-900 text-sm mb-1">${item.name}</h3>
-                        <p class="text-indigo-600 font-black text-lg mb-3">$${item.price}</p>
+                        <h3 class="font-bold text-gray-900 text-sm mb-1 line-clamp-1">${item.name}</h3>
+                        <div class="flex items-center gap-1 mb-3 text-xs font-bold text-amber-500">
+                            <i class="fa-solid fa-star"></i>
+                            <span>${item.rating}</span>
+                            <span class="text-gray-400 font-normal">(${item.reviewsCount})</span>
+                        </div>
+                        
+                        <div class="bg-indigo-50/50 p-3 rounded-xl mb-3 border border-indigo-100/60 shadow-inner">
+                            <div class="flex items-center justify-between mb-2 pb-2 border-b border-indigo-100">
+                                <span class="text-[11px] font-bold text-gray-500">Quantity:</span>
+                                <div class="flex items-center gap-2 bg-white rounded-lg border shadow-sm p-1">
+                                    <button onclick="changeCardQty('${item.id}', -1, ${item.price})" class="w-6 h-6 rounded bg-gray-50 hover:bg-gray-200 text-gray-700 font-bold flex items-center justify-center transition">-</button>
+                                    <span id="qty-${item.id}" class="text-xs font-black text-indigo-700 w-4 text-center">1</span>
+                                    <button onclick="changeCardQty('${item.id}', 1, ${item.price})" class="w-6 h-6 rounded bg-gray-50 hover:bg-gray-200 text-gray-700 font-bold flex items-center justify-center transition">+</button>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-[11px] font-bold text-gray-500">Total Price:</span>
+                                <p id="price-${item.id}" class="text-indigo-600 font-black text-lg">$${item.price}</p>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="space-y-2">
-                        <button onclick="openProductModal('${item.id}')" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 transition">
-                            <i class="fa-solid fa-eye"></i> التفاصيل والوصف
+                    <div class="space-y-2 mt-auto">
+                        <button onclick="openProductModal('${item.id}')" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 transition shadow-sm">
+                            <i class="fa-solid fa-eye"></i> Details
                         </button>
-                        <button onclick="addToCart('${item.name}', ${item.price})" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1 shadow-md transition">
-                            <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+                        <button onclick="addCardToCart('${item.id}', '${item.name}', ${item.price})" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-md transition active:scale-95">
+                            <i class="fa-solid fa-cart-plus"></i> Add to Cart
                         </button>
                     </div>
                 </div>
             `).join('');
+        }
 
-            parseEmojis();
+        function changeCardQty(id, delta, basePrice) {
+            const qtyElement = document.getElementById(`qty-${id}`);
+            const priceElement = document.getElementById(`price-${id}`);
+            let currentQty = parseInt(qtyElement.innerText);
+            
+            currentQty += delta;
+            if (currentQty < 1) currentQty = 1;
+            
+            qtyElement.innerText = currentQty;
+            priceElement.innerText = `$${(currentQty * basePrice).toFixed(2)}`;
+        }
+
+        function addCardToCart(id, name, basePrice) {
+            const qty = parseInt(document.getElementById(`qty-${id}`).innerText);
+            addToCart(name, basePrice, qty);
         }
 
         function resetToHome() {
@@ -407,103 +580,257 @@
             document.getElementById('step-category-selection').classList.remove('hidden');
         }
 
+        let currentModalProductBasePrice = 0;
         function openProductModal(id) {
             let product = null;
             Object.keys(database[currentGender].products).forEach(cat => {
                 const found = database[currentGender].products[cat].find(p => p.id === id);
                 if(found) product = found;
             });
-
             if(!product) return;
+
+            currentModalProductBasePrice = product.price;
 
             document.getElementById('modal-img').src = product.image;
             document.getElementById('modal-title').innerText = product.name;
-            document.getElementById('modal-price').innerText = `$${product.price}`;
             document.getElementById('modal-description').innerText = product.description;
+            document.getElementById('modal-rating').innerHTML = `
+                <i class="fa-solid fa-star"></i>
+                <span class="text-gray-900 font-bold">${product.rating}</span>
+                <span class="text-gray-500 font-normal">(${product.reviewsCount} reviews)</span>
+            `;
+
+            document.getElementById('modal-qty').innerText = "1";
+            document.getElementById('modal-price').innerText = `$${product.price}`;
+
+            document.getElementById('modal-qty-minus').onclick = () => changeModalQty(-1, product.price);
+            document.getElementById('modal-qty-plus').onclick = () => changeModalQty(1, product.price);
 
             document.getElementById('modal-add-btn').onclick = function() {
-                addToCart(product.name, product.price);
+                const qty = parseInt(document.getElementById('modal-qty').innerText);
+                addToCart(product.name, product.price, qty);
                 closeProductModal();
             };
 
             document.getElementById('product-modal').classList.remove('hidden');
         }
 
+        function changeModalQty(delta, basePrice) {
+            const qtyElement = document.getElementById('modal-qty');
+            const priceElement = document.getElementById('modal-price');
+            let currentQty = parseInt(qtyElement.innerText);
+            
+            currentQty += delta;
+            if (currentQty < 1) currentQty = 1;
+            
+            qtyElement.innerText = currentQty;
+            priceElement.innerText = `$${(currentQty * basePrice).toFixed(2)}`;
+        }
+
         function closeProductModal() { document.getElementById('product-modal').classList.add('hidden'); }
 
-        function addToCart(name, price) {
+        function addToCart(name, price, qtyToAdd = 1) {
             const existing = cart.find(item => item.name === name);
-            if(existing) { existing.qty++; } else { cart.push({ name, price, qty: 1 }); }
+            if(existing) { 
+                existing.qty += qtyToAdd; 
+            } else { 
+                cart.push({ name, price, qty: qtyToAdd }); 
+            }
             updateCartUI();
-            alert('تمت الإضافة للسلة بنجاح! 🛒');
+            showSmoothToast(`Added ${qtyToAdd} item(s) to cart successfully`);
         }
 
         function updateCartUI() {
             document.getElementById('cart-count').innerText = cart.reduce((acc, item) => acc + item.qty, 0);
-            let total = 0;
-            document.getElementById('cart-items').innerHTML = cart.map(item => {
-                total += item.price * item.qty;
-                return `<div class="flex justify-between border-b pb-2"><span class="font-bold text-xs">${item.name} (x${item.qty})</span><span class="text-indigo-600 font-bold text-xs">$${item.price * item.qty}</span></div>`;
-            }).join('');
-            document.getElementById('cart-total').innerText = `$${total}`;
-        }
+            
+            let subtotal = 0;
+            const container = document.getElementById('cart-items');
 
-        function toggleCart() { document.getElementById('cart-modal').classList.toggle('hidden'); }
-
-        function checkout() {
-            if(cart.length === 0) return alert('السلة فارغة!');
-            let message = `مرحباً، أريد شراء الطلبية التالية:\n` + cart.map(i => `- ${i.name} (العدد: ${i.qty})`).join('\n');
-            window.open(`https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`, '_blank');
-        }
-
-        function openFeedbackModal() { document.getElementById('feedback-modal').classList.remove('hidden'); parseEmojis(); }
-        function closeFeedbackModal() { document.getElementById('feedback-modal').classList.add('hidden'); }
-
-        function simulateGoogleLogin() {
-            currentUser = { name: "أحمد بن زكريا", email: "ahmed.user@gmail.com", picture: "https://ui-avatars.com/api/?name=أحمد+بن+زكريا&background=6366f1&color=fff" };
-            updateAuthUI();
-        }
-
-        function updateAuthUI() {
-            if(currentUser) {
-                document.getElementById('user-logged-out').classList.add('hidden');
-                document.getElementById('user-logged-in').classList.remove('hidden');
-                document.getElementById('user-name').innerText = currentUser.name;
-                document.getElementById('user-email').innerText = currentUser.email;
-                document.getElementById('user-avatar').src = currentUser.picture;
-                document.getElementById('review-form-box').classList.remove('opacity-50', 'pointer-events-none');
+            if(cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-gray-400 font-semibold text-xs">
+                        <img src="https://emojigraph.org/media/apple/shopping-cart_1f6d2.png" class="w-14 h-14 mx-auto mb-2 opacity-50 object-contain">
+                        Your cart is currently empty!
+                    </div>
+                `;
             } else {
-                document.getElementById('user-logged-out').classList.remove('hidden');
-                document.getElementById('user-logged-in').classList.add('hidden');
-                document.getElementById('review-form-box').classList.add('opacity-50', 'pointer-events-none');
+                container.innerHTML = cart.map((item, index) => {
+                    subtotal += item.price * item.qty;
+                    return `
+                        <div class="flex justify-between items-center bg-white/5 border border-white/10 p-2.5 rounded-2xl">
+                            <div>
+                                <h5 class="font-bold text-xs text-white mb-0.5">${item.name}</h5>
+                                <p class="text-[11px] text-amber-400 font-bold">$${item.price} × ${item.qty} <span class="text-gray-400 text-[10px]">($${(item.price*item.qty).toFixed(2)})</span></p>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="changeCartQty(${index}, 1)" class="w-6 h-6 bg-white/10 hover:bg-white/20 rounded-lg font-bold text-xs flex items-center justify-center">+</button>
+                                <span class="text-xs font-black w-4 text-center">${item.qty}</span>
+                                <button onclick="changeCartQty(${index}, -1)" class="w-6 h-6 bg-white/10 hover:bg-white/20 rounded-lg font-bold text-xs flex items-center justify-center">-</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            const selectedCountryVal = document.getElementById('shipping-country').value;
+            const shippingCost = shippingRates[selectedCountryVal] || 5.00;
+            const grandTotal = subtotal + (cart.length > 0 ? shippingCost : 0);
+
+            document.getElementById('cart-subtotal').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('shipping-cost-display').innerText = `$${shippingCost.toFixed(2)}`;
+            document.getElementById('cart-total').innerText = `$${grandTotal.toFixed(2)}`;
+        }
+
+        function changeCartQty(index, delta) {
+            cart[index].qty += delta;
+            if(cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            const overlay = document.getElementById('cart-overlay');
+            const drawer = document.getElementById('cart-drawer');
+            
+            if(overlay.classList.contains('hidden')) {
+                overlay.classList.remove('hidden');
+                setTimeout(() => {
+                    overlay.classList.remove('opacity-0');
+                    drawer.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                overlay.classList.add('opacity-0');
+                drawer.classList.add('translate-x-full');
+                setTimeout(() => {
+                    overlay.classList.add('hidden');
+                }, 300);
             }
         }
 
-        function googleLogout() { currentUser = null; updateAuthUI(); }
+        function selectPaymentMethod(type) {
+            const cardBox = document.getElementById('pay-card-box');
+            const paypalBox = document.getElementById('pay-paypal-box');
+            const codBox = document.getElementById('pay-cod-box');
 
-        function postGlobalReview() {
-            if(!currentUser) return alert('سجل دخولك أولاً!');
-            const text = document.getElementById('review-text').value;
-            if(!text.trim()) return;
+            const cardInputs = document.getElementById('card-details-inputs');
+            const paypalInputs = document.getElementById('paypal-email-input');
 
-            const html = `
-                <div class="bg-gray-50 p-3.5 rounded-2xl border flex gap-3">
-                    <img src="${currentUser.picture}" class="w-9 h-9 rounded-full border">
-                    <div>
-                        <h4 class="font-bold text-xs text-gray-900">${currentUser.name} <span class="text-yellow-500">⭐⭐⭐⭐⭐</span></h4>
-                        <p class="text-xs text-gray-600 mt-0.5">${text}</p>
-                    </div>
-                </div>
-            `;
-            document.getElementById('global-reviews-list').insertAdjacentHTML('afterbegin', html);
-            document.getElementById('review-text').value = '';
-            parseEmojis();
+            // Reset all styles
+            cardBox.className = "cursor-pointer border-2 border-indigo-500/40 bg-indigo-950/20 p-3 rounded-2xl transition shadow-lg";
+            paypalBox.className = "cursor-pointer border-2 border-blue-500/40 bg-blue-950/20 p-3 rounded-2xl transition shadow-lg";
+            codBox.className = "cursor-pointer border-2 border-emerald-500/40 bg-emerald-950/20 p-3 rounded-2xl transition shadow-lg";
+
+            cardBox.querySelector('input').checked = false;
+            paypalBox.querySelector('input').checked = false;
+            codBox.querySelector('input').checked = false;
+
+            cardInputs.classList.add('hidden');
+            paypalInputs.classList.add('hidden');
+
+            if(type === 'card') {
+                cardBox.className = "cursor-pointer border-2 border-indigo-500 bg-indigo-950/60 p-3 rounded-2xl transition shadow-lg";
+                cardBox.querySelector('input').checked = true;
+                cardInputs.classList.remove('hidden');
+            } else if(type === 'paypal') {
+                paypalBox.className = "cursor-pointer border-2 border-blue-500 bg-blue-950/60 p-3 rounded-2xl transition shadow-lg";
+                paypalBox.querySelector('input').checked = true;
+                paypalInputs.classList.remove('hidden');
+            } else if(type === 'cod') {
+                codBox.className = "cursor-pointer border-2 border-emerald-500 bg-emerald-950/60 p-3 rounded-2xl transition shadow-lg";
+                codBox.querySelector('input').checked = true;
+            }
         }
 
-        // تشغيل تحويل الإيموجيات فور تحميل الصفحة
-        window.onload = function() {
-            parseEmojis();
-        };
+        function checkoutToWhatsApp() {
+            if(cart.length === 0) return alert('Your cart is empty!');
+            
+            const countrySelect = document.getElementById('shipping-country');
+            const countryText = countrySelect.options[countrySelect.selectedIndex].text;
+            const city = document.getElementById('ship-city').value.trim();
+            const street = document.getElementById('ship-street').value.trim();
+            const apt = document.getElementById('ship-apt').value.trim();
+
+            if(!city || !street) {
+                alert('Please enter your city and street address for shipping!');
+                return;
+            }
+
+            const selectedPayment = document.querySelector('input[name="paymentOption"]:checked').value;
+
+            let paymentExtraInfo = "";
+            if(selectedPayment === 'Credit Card') {
+                const ccNum = document.getElementById('cc-number').value.trim();
+                if(!ccNum) {
+                    alert('Please enter your credit card number!');
+                    document.getElementById('cc-number').focus();
+                    return;
+                }
+                paymentExtraInfo = `(Card ending in •••• ${ccNum.slice(-4)})`;
+            } else if(selectedPayment === 'PayPal') {
+                const ppEmail = document.getElementById('paypal-email').value.trim();
+                if(!ppEmail) {
+                    alert('Please enter your PayPal email address!');
+                    document.getElementById('paypal-email').focus();
+                    return;
+                }
+                paymentExtraInfo = `(PayPal Account: ${ppEmail})`;
+            }
+
+            let message = `🛒 *NEW ORDER - Hyper Store* 👑\n\n` + 
+                        `*Products:*\n` + 
+                        cart.map(i => `• ${i.name} (Qty: ${i.qty}) -> $${i.price * i.qty}`).join('\n') + 
+                        `\n\n*Shipping Address:*\n` +
+                        `- Country: ${countryText}\n` +
+                        `- City: ${city}\n` +
+                        `- Street: ${street}\n` +
+                        `- Apt/House: ${apt || 'N/A'}\n\n` +
+                        `*Payment Details:*\n` +
+                        `- Method: ${selectedPayment} ${paymentExtraInfo}\n` +
+                        `- Subtotal: ${document.getElementById('cart-subtotal').innerText}\n` +
+                        `- Shipping: ${document.getElementById('shipping-cost-display').innerText}\n` +
+                        `- *Total Amount:* ${document.getElementById('cart-total').innerText}\n\n` +
+                        `_Status: Order placed successfully and ready for processing!_`;
+
+            window.open(`https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function openFeedbackModal() { document.getElementById('feedback-modal').classList.remove('hidden'); }
+        function closeFeedbackModal() { document.getElementById('feedback-modal').classList.add('hidden'); }
+
+        // Donate Modal Functions
+        function openDonateModal() { document.getElementById('donate-modal').classList.remove('hidden'); }
+        function closeDonateModal() { document.getElementById('donate-modal').classList.add('hidden'); }
+        function setDonateAmount(amount) {
+            document.getElementById('donate-amount').value = amount;
+        }
+
+        function sendDonationWhatsApp() {
+            const amount = document.getElementById('donate-amount').value;
+            const txId = document.getElementById('donate-tx-id').value.trim();
+
+            if(!amount || amount <= 0) {
+                alert('Please enter a valid support amount!');
+                return;
+            }
+
+            if(!txId) {
+                alert('Please enter your Donation Transaction ID!');
+                document.getElementById('donate-tx-id').focus();
+                return;
+            }
+
+            let message = `💖 *NEW STORE DONATION & SUPPORT* 👑\n\n` +
+                        `- *Support Amount:* $${amount}\n` +
+                        `- *PayPal Account:* zinobandaho@gmail.com\n` +
+                        `- 🆔 *Transaction ID:* ${txId}\n\n` +
+                        `_Status: Thank you for supporting Hyper Store development!_`;
+
+            window.open(`https://wa.me/${myWhatsAppNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            closeDonateModal();
+        }
+
+        updateCartUI();
     </script>
 </body>
 </html>
